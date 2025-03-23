@@ -1,27 +1,28 @@
 import React, { useState} from "react"; 
 import { useNavigate, Link} from 'react-router-dom';  
-import "./login.css";
+import "./signup.css";
 import api from '../../services/api';
 import CodeSnippetsLogo from "../../assets/images/logo.png";
 
-function Login() {
+function Signup() {
   const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const onLoginSuccess = () => {
-      navigate('/allsnippets');
+  const onSignupSuccess = () => {
+      navigate('/login');
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await api.post('api/v0.1/guest/login', { email, password });
+      const response = await api.post('api/v0.1/guest/signup', { email, username, password });
       if (response.data.success) {
         localStorage.setItem('token', response.data.data.token);
         localStorage.setItem('id', response.data.data.id);
-        onLoginSuccess();
+        onSignupSuccess();
       } else {
         setError(response.data.error);
       }
@@ -32,10 +33,10 @@ function Login() {
   };
 
   return (
-    <div className="login-form">
-      <form className="login-box" onSubmit={handleSubmit}>
+    <div className="signup-form">
+      <form className="signup-box" onSubmit={handleSubmit}>
         <div className="container1">
-          <div className="login-logo">
+          <div className="signup-logo">
           <img src={CodeSnippetsLogo} alt="Code Dnippets Logo" className="logo" />
           </div>
 
@@ -54,6 +55,18 @@ function Login() {
           </div>
 
           <div className="form-field">
+            <label htmlFor="username">Username*</label>
+            <input
+              type="text"
+              placeholder="JhonDoe"
+              id="username"
+              name="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+
+          <div className="form-field">
             <label htmlFor="password">Password*</label>
             <input
               type="password"
@@ -64,15 +77,16 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+          
 
-          <div className="login-btn">
-            <button type="submit">Login</button>
+          <div className="signup-btn">
+            <button type="submit">Signup</button>
           </div>
 
           <div className="apply">
           {error && <p className="error">{error}</p>}
-            <p>Don't have an account?</p>
-            <Link to="/signup" className="signup-link">Click Here</Link>
+            <p>Already have an account?</p>
+            <Link to="/login" className="login-link">Click Here</Link>
           </div>
 
         </div>
@@ -81,4 +95,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Signup;
