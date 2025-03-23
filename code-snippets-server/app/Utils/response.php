@@ -17,4 +17,19 @@ class Response
 
         echo json_encode($response);
     }
+
+    public static function response_op($success, $message, $operation, $data = null,)
+    {
+        $response = [
+            "success" => $success,
+            "message" => $message,
+            "operation" => $operation
+        ];
+
+        if ($data !== null) {
+            $response['data'] = $data;
+        }
+
+        echo json_encode($response);
+    }
 }
