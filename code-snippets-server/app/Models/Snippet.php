@@ -16,4 +16,9 @@ class Snippet extends Model
     public function tags(){
         return $this->belongsToMany(Tag::class);
     }
+
+    public function favoredByUsers(){
+        return $this->belongsToMany(User::class, 'favorite_snippets');
+    }
+
 }

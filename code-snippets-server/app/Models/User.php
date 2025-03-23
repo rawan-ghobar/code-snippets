@@ -36,4 +36,8 @@ class User extends Authenticatable implements JWTSubject{
         return $this->hasMany(Snippet::class);
     }
 
+    public function favoriteSnippets(){
+        return $this->belongsToMany(Snippet::class, 'favorite_snippets');
+    }
+
 }
