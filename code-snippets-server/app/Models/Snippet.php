@@ -18,7 +18,7 @@ class Snippet extends Model
     }
 
     public function favoredByUsers(){
-        return $this->belongsToMany(User::class, 'favorite_snippets');
+        return $this->belongsToMany(User::class);
     }
 
 }
