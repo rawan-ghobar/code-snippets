@@ -9,9 +9,9 @@ Route::group(["prefix" => "v0.1"], function() {
     // Authenticated Routes
     Route::group(["middleware" => "auth:api"], function() {
         Route::group(["prefix" => "user"], function() {
-            Route::post('/snippets/{count}/{page}/{language?}/{tags?}/{id?}', [SnippetController::class, "getSnippets"]);
+            Route::get('/snippets/{count}/{page}/{language?}/{tags?}/{id?}', [SnippetController::class, "getSnippets"]);
             Route::post('/addOrUpdatesnipet/{id?}', [SnippetController::class, "addOrUpdateSnippet"]);
-            Route::post('/favorites/{count}/{page}', [FavoriteController::class, "getFavorites"]);
+            Route::get('/favorites/{count}/{page}', [FavoriteController::class, "getFavorites"]);
             Route::post('/favorites/add', [FavoriteController::class, "addFavorite"]);
             Route::delete('/favorites/remove/{snippetId}', [FavoriteController::class, "removeFavorite"]);
         });

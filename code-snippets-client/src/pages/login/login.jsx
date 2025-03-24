@@ -11,7 +11,7 @@ function Login() {
   const navigate = useNavigate();
 
   const onLoginSuccess = () => {
-      navigate('/allsnippets');
+      navigate('/home');
   };
 
   const handleSubmit = async (e) => {
@@ -20,6 +20,7 @@ function Login() {
       const response = await api.post('api/v0.1/guest/login', { email, password });
       if (response.data.success) {
         localStorage.setItem('token', response.data.data.token);
+        console.log('Token stored:', localStorage.getItem('token'));
         localStorage.setItem('id', response.data.data.id);
         onLoginSuccess();
       } else {

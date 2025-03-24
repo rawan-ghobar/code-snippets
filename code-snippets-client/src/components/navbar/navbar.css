@@ -1,0 +1,29 @@
+.navbar {
+    background-color: #205781;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px; 
+}
+
+.logo-section img {
+    height: 50px;
+}
+
+.nav-links {
+    display: flex;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    padding: 10px;
+    transition: background-color 0.3s; 
+}
+
+.nav-links a:hover {
+    background-color: #163d57;
+    border-radius: 5px;
+}

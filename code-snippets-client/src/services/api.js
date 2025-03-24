@@ -2,12 +2,13 @@ import axios from 'axios';
 
 const api = axios.create({
   baseURL: 'http://localhost:8000',
-  timeout: 10000,
+  timeout: 20000,
 });
 
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
+    console.log('Adding token to header:', token);
     if (token) {
       config.headers['Authorization'] = `Bearer ${token}`;
     }
